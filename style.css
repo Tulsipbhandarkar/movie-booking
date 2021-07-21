@@ -1,0 +1,237 @@
+* {
+  font-family: "Work Sans";
+}
+body {
+  margin: 0px;
+  padding: 0px;
+  background-color: rgb(81, 35, 107);
+  /* background: rgb(112, 148, 162);
+  background: linear-gradient(
+    90deg,
+    rgba(112, 148, 162, 1) 0%,
+    rgba(72, 127, 149, 1) 30%,
+    rgba(81, 99, 214, 1) 100%
+  ); */
+}
+
+.container {
+  padding: 0.5em;
+  background-color: rgb(81, 35, 107);
+}
+#welcome {
+  font-size: 26px;
+  font-weight: bold;
+}
+/* .nav {
+  display: flex;
+  justify-content: flex-start;
+} */
+
+.nav-list {
+  margin: 0;
+  padding-left: 5px;
+  padding-right: 20px;
+  list-style: none;
+}
+
+header::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.nav-list a {
+  color: rgb(228, 33, 33);
+  font-size: 130%;
+  text-decoration: none;
+  font-family: "Work Sans", "Times New Roman", Times, serif;
+  font-weight: bold;
+  padding-top: 30px;
+}
+nav a.main-item::before {
+  content: "";
+  /* display: block; */
+  height: 4px;
+  width: 100%;
+  background-color: rgb(228, 33, 33);
+  position: absolute;
+  top: 0;
+  width: 0%;
+  transition: ease-in-out 250ms;
+}
+nav a:hover::before {
+  width: 100%;
+}
+
+nav a.main-item:hover {
+  color: rgb(255, 121, 121);
+}
+.logo {
+  padding-top: 0;
+}
+nav li {
+  display: inline-block;
+  margin: 0 10px;
+  padding-top: 22px;
+  position: relative;
+}
+nav ul {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+#welcome {
+  margin-right: auto;
+}
+.slideshow img {
+  width: 100%;
+  height: 500px;
+}
+.showbox {
+  background-color: pink;
+  width: 100%;
+  height: 100%;
+}
+.cards-container {
+  /* margin: 0px 5px 5px 10px; */
+  padding: 0px 60px;
+  /* border: 2px solid rgb(238, 3, 3); */
+  display: flex;
+  flex-wrap: wrap;
+  background-color: rgb(81, 35, 107);
+
+  justify-content: flex-start;
+}
+
+.card {
+  color: white;
+  background-color: rgb(175, 0, 0);
+  margin: 28px;
+  border: 2px solid rgb(146, 0, 0);
+  /* height: 350px; */
+  /* width: 250px; */
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  flex-wrap: wrap;
+  flex-basis: 20%;
+}
+
+.card:hover {
+  transform: scale(1.02);
+  transition: all 0.4s;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.card img {
+  height: 300px;
+  width: 100%;
+  border-radius: 15px 15px 0 0;
+}
+
+.card-title {
+  text-align: center;
+  padding: 2px 2px 5px 2px;
+  height: 10%;
+  font-size: 20px;
+  font-weight: bold;
+  word-wrap: break-word;
+}
+.headings {
+  padding-left: 30px;
+  flex-basis: 100%;
+  color: white;
+  font-size: 35px;
+  font-weight: 900;
+  line-height: 0.1em;
+}
+
+.card a {
+  color: white;
+  text-decoration: none;
+}
+
+ul li ul.dropdown-menu {
+  min-width: 100%; /* Set width of the dropdown */
+  background: rgba(214, 182, 233, 0.8);
+  padding: 0;
+  margin-top: 10px;
+  margin-left: 0;
+  border-radius: 2px;
+  display: none;
+  position: absolute;
+  z-index: 999;
+  left: 0;
+  box-shadow: 0px 8px 16px 0px rgba(100, 72, 72, 0.5);
+}
+ul li:hover ul.dropdown-menu {
+  margin-top: 5px;
+  padding: 0 10px 15px 20px;
+  text-align: center;
+  display: block; /* Display the dropdown */
+  width: 0%;
+}
+.dropdown-menu li {
+  /* border: 2px solid red; */
+}
+.dropdown-menu a:hover {
+  color: rgb(99, 0, 0);
+}
+
+.footer-clean {
+  padding: 50px 0;
+  color: #f0f9ff;
+  background-color: #322828;
+}
+
+.footer-container {
+  padding: 10px 50px;
+}
+
+.footer-clean ul {
+  padding: 0;
+  list-style: none;
+  line-height: 1.6;
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+.footer-clean ul a {
+  font-size: 16px;
+  color: inherit;
+  text-decoration: none;
+  opacity: 0.8;
+}
+
+.footer-clean ul a:hover {
+  opacity: 1;
+}
+
+.footer-clean .item.social {
+  text-align: right;
+}
+
+.footer-clean .item.social > a {
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  margin-left: 10px;
+  margin-top: 22px;
+  color: inherit;
+  opacity: 0.75;
+}
+
+.footer-clean .item.social > a:hover {
+  opacity: 0.9;
+}
+.row-justify-content-center {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
