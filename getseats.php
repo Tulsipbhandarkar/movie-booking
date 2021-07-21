@@ -9,7 +9,7 @@ $movieid = $_POST['movieid'];
 $mtime .= ":00";
 
 $sql= "SELECT * FROM shows NATURAL JOIN seats WHERE shows.mid=$movieid AND shows.cid=$thet AND shows.sdate='$mdate' AND shows.stimings='$mtime';";
-
+//getting seat info
 $cnt=0;
 $occ_seats= array();
 $seat_name="";
