@@ -20,10 +20,10 @@
 
 <script type="text/javascript">
 
-var movieidEn;
-var theat;
-var mdate;
-var mtime;
+var movieidEn=0;
+var theat=0;
+var mdate=0;
+var mtime=0;
 
 </script>
 <!-- theatre, date, timings
@@ -75,22 +75,9 @@ if($result = mysqli_query($link, $theat)){
 </select>
 </form>
 </div>
-<div class="test">
-    hello test
-</div>
 
-<div class= "seat-bookings">
-<div class="movie-container">
-      <label for="">Pick a movie</label>
-      <select id="movie">
-        <option value="10">Avengers: Endgame ($10)</option>
-        <option value="12">Joker ($12)</option>
-        <option value="8">Toy Story 4 ($8)</option>
-        <option value="9">The Lion King ($9)</option>
-      </select>
-    </div>
 
-    <ul class="showcase">
+<ul class="showcase">
       <li>
         <div class="seat"></div>
         <small>N/A</small>
@@ -104,52 +91,34 @@ if($result = mysqli_query($link, $theat)){
         <small>Occupied</small>
       </li>
     </ul>
+<!-- <div><script type='text/javascript' src='dup.js'></script></div> -->
+    <div class="movie-container" id="showing-seats">
+      <div class="screen" style="width: 100%; height: 60px; display:none;"></div>
 
-    <div class="container">
-      <div class="screen"></div>
-
-      <div class="row">
-        <div class="seat"><a><input value="1"></a></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-      </div>
-
-      <div class="row">
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat occupied"></div>
-        <div class="seat occupied"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-      </div>
-      <div class="row">
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat occupied"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat occupied"></div>
-        <div class="seat"></div>
-      </div>
-
-      <div class="row">
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat occupied"></div>
-        <div class="seat occupied"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-      </div>
-
-
-
-
+<table id="s_table">
+  <!--  <tr>
+    <td class="seat" data-value="1" width="20px" style="text-align: center"><a href="#">  1</a></td> 
+    <td class="seat" data-value="2" width="20px" style="text-align: center"><a href="#">  2</a></td> 
+    <td class="seat" width="20px" style="text-align: center"><a href="#">  3</a></td> 
+    <td class="seat" width="20px" style="text-align: center"><a href="#">  4</a></td> 
+    <td class="seat occupied" width="20px" style="text-align: center"><a href="#">  5</a></td> 
+  </tr>
+  <tr>
+    <td class="seat" width="20px" style="text-align: center"><a href="#">  6</a></td> 
+    <td class="seat"  style="text-align: center"><a href="#">  7</a></td> 
+    <td class="seat" style="text-align: center"><a href="#">  8</a></td> 
+    <td class="seat" style="text-align: center"><a href="#">  9</a></td> 
+    <td class="seat" style="text-align: center"><a href="#">  10</a></td> 
+  </tr>
+  <tr>  
+    <td class="seat" width="20px" style="text-align: center"><a href="#">  11</a></td> 
+    <td class="seat" style="text-align: center"><a href="#">  12</a></td> 
+    <td class="seat occupied" style="text-align: center"><a href="#">  13</a></td> 
+    <td class="seat" style="text-align: center"><a href="#">  14</a></td> 
+    <td class="seat" style="text-align: center"><a href="#">  15</a></td> 
+  </tr> -->
+</table>
+</div>
 
     <p class="text">
       You have selected <span id="count">0</span> seats for a price of $<span
@@ -157,7 +126,8 @@ if($result = mysqli_query($link, $theat)){
         >0</span
       >
     </p>
-</div>
+
+  <input type="button" id='submit-button' value='Book Seats' disabled> 
 <script>
     //function to select theatre and show date option
   function showtheatre(str)
@@ -170,6 +140,9 @@ if($result = mysqli_query($link, $theat)){
 //   document.getElementById("movie").innerHTML="";
 //   return;
 //   } 
+
+$('#submit-button').prop('disabled',true);
+
 $(document).ready(function(){
 
   $.ajax({
@@ -190,6 +163,8 @@ $(document).ready(function(){
   //function to select date and show timings option
 function showdate(str){         
   mdate=str;
+  
+  $('#submit-button').prop('disabled',true);
 
 $(document).ready(function(){
  console.log("Date ");
@@ -211,22 +186,30 @@ $.ajax({
 
 function showseats(str){         
   mtime=str;
-
 $(document).ready(function(){
- console.log("Seats ");
-$.ajax({
-  type: "POST",
-  url: 'getseats.php',
-  data: {"thet":theat,
-          "mdate":mdate,
-          "mtime":mtime,
-          "movieid":movieidEn},
-  success: function(data){
 
-    $('.seat-bookings').css("display","block");
-    $(".movie-container").append(data);
-  }
-});
+
+   $('#submit-button').prop('disabled',false);
+    $('#submit-button').click(function(){
+      loc ='seats_page.php?mid='+movieidEn+'&theat='+theat+"&mdate="+mdate+"&mtime="+mtime
+      window.location.assign(loc);
+    })
+//  console.log("Seats ");
+// $.ajax({
+//   type: "POST",
+//   url: 'seats_page.php',
+//   data: {"thet":theat,
+//           "mdate":mdate,
+//           "mtime":mtime,
+//           "movieid":movieidEn},
+//   success: function(data){
+//     console.log("Success ");
+//     $('.screen').css('display','block')
+//     $("#s_table").html("");  
+//     $("#s_table").append(data);
+//   }
+// });
+
 })
 
 }

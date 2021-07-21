@@ -113,13 +113,15 @@ if($result = mysqli_query($link, $theat)){
     <td class="seat" style="text-align: center"><a href="#">  15</a></td> 
   </tr> -->
 </table>
-    </div>
+</div>
 
     
     <p class="text">
       You have selected <span id="count">0</span> seats for a price of $<span id="total">0</span>
     </p>
 
+    <input type="button" value='SUBMIT'>
+ 
     <!-- <div class="container">
 
       <div class="row">
@@ -292,7 +294,7 @@ $.ajax({
           "mtime":mtime,
           "movieid":movieidEn},
   success: function(data){
-    console.log("Suceess ");
+    console.log("Sucecess ");
     // $("#showing-seats").html("");  
     // $("#showing-seats").append(data);
     $('.screen').css('display','block')

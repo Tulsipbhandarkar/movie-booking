@@ -93,16 +93,18 @@ if($result = mysqli_query($link, $sql)){
         
         while($row = mysqli_fetch_array($result)){
 
-            echo "<div class='card' ><a href='movie-page.php?mid=".$row['mid'] ."'>
-        <img src='".$row['mimg'] ."'>
+            echo "<div class='card' >";
+            if (isset($_SESSION['username'])){ echo "<a href='movie-page.php?mid=".$row['mid'] ."'>";}
+            else {echo "<a href='#'></a>"; }
+        echo "<img src='".$row['mimg'] ."'>
         <div class='card-title'>"
            .$row['mname'] ."
         </div>
             </a>
         </div>";
 
-        }
-
+        
+      }
     }
 }
 ?>

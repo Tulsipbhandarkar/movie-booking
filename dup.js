@@ -34,7 +34,6 @@ $(document).ready(function(){
   var selected_seats = new Array();
   s_counter=0;
    $seat.delegate('.seat','click',function() {
-
     if (!$(this).hasClass('occupied') && !$(this).hasClass('seat selected') ){
       $(this).removeClass('seat');
       $(this).addClass('seat selected');

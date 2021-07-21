@@ -23,7 +23,8 @@ while($row = mysqli_fetch_array($result))
       array_push($occ_seats, $row['sno']);
     $cnt+=1;
   }
-
+}
+}
   // echo "<table>";
   for($i=1;$i<=3;$i++)
   {  
@@ -43,11 +44,11 @@ while($row = mysqli_fetch_array($result))
     echo "</tr>";
   }
   // echo "</table>";
-}
 
-  else{
-      echo "No result";
-  }
+
+  // else{
+  //     echo "No result";
+  // }
   
-}
+
 ?>

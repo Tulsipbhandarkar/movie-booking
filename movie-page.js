@@ -1,43 +1,64 @@
+
 const container = document.querySelector(".container");
-const seats = document.querySelectorAll(".row .seat:not(.occupied)");
+const seats = document.querySelectorAll(".seat:not(.occupied)");
 const count = document.getElementById("count");
 const total = document.getElementById("total");
-const movieSelect = document.getElementById("movie");
 
-// let ticketPrice = parseInt(movieSelect.value);
-let ticketPrice = 10;
+var $seat = $('#s_table');
 
-function updateSelectedCount() {
-  const selectedSeats = document.querySelectorAll(".row .selected");
-  const selectedSeatsCount = selectedSeats.length;
-  count.innerHTML = selectedSeatsCount;
-  total.innerHTML = selectedSeatsCount * ticketPrice;
-}
+console.log($seat);
+const movieSelect =0;
+var ticketPrice = 0;
 
-$(document).ready(function(){
+ 
+// $(document).ready(function(){
+  // $('.seat').click(function() {
 
-  $('movieSelect').change(function() {
-    console.log(pasreInt(this.value));
-    updateSelectedCount();
-  });
-
-  $('.seat').click(function() {
-
+  var selected_seats = new Array();
+  s_counter=0;
+   $seat.delegate('.seat','click',function() {
     if (!$(this).hasClass('occupied') && !$(this).hasClass('seat selected') ){
-      console.log("ROW RUNNING");
       $(this).removeClass('seat');
       $(this).addClass('seat selected');
-      updateSelectedCount();
+      ss=$(this).text();
+      selected_seats.push(ss);
+      seat_price=$(this).parent().attr("class");
+   
+      s_counter+=1;
+
+      ticketPrice+=parseInt(seat_price);
+      console.log("Seat selected " +ss +" Price:"+seat_price + "Total:" +ticketPrice);
+      count.innerHTML = s_counter;
+      total.innerHTML = ticketPrice;
+      // updateSelectedCount();
     }
     else if($(this).hasClass('seat selected')){
       $(this).removeClass('seat selected');
       $(this).addClass('seat');
-      updateSelectedCount();
-    }
+      ss=$(this).text();
+      selected_seats.splice(ss,1);
+      seat_price=$(this).parent().attr("class");
 
+      s_counter-=1;
+
+      ticketPrice-=parseInt(seat_price);
+      console.log("Seat deselected " +ss+" Price:"+seat_price + "Total:" +ticketPrice);
+      count.innerHTML = s_counter;
+      total.innerHTML = ticketPrice;
+      // updateSelectedCount();
+    }
+     
+    if(count.innerHTML>0){
+   $('#submit-book').prop('disabled',false);
+    }
+    else{
+   $('#submit-book').prop('disabled',true);
+    }
 });
 
-})
+
+
+
 
 // movieSelect.addEventListener("change", (e) => {
 //   ticketPrice = parseInt(e.target.value);

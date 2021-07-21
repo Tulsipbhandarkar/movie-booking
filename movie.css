@@ -21,7 +21,7 @@ body {
   margin: 20px 0px;
 }
 
-.movie-container select {
+.movie-container select, #submit-button, #submit-book{
   background-color: #fff;
   border: 0px;
   border-radius: 5px;
@@ -32,6 +32,27 @@ body {
   -webkit-appearance: none;
   appearance: none;
 }
+
+#submit-button,#submit-book{
+  height: 40px;
+  width: 120px;
+  font-size: 18px;
+  background-color: #aebaff;
+  font-weight: 600;
+  position: relative;
+}
+
+#submit-button:hover:enabled, 
+#submit-book:hover:enabled {
+  background-color: #eb0b0b;
+  font-weight: 600;
+  color: rgb(192, 175, 255);
+  transform: scaleX(1.05);
+  transition:  color 2s ;
+  transition: background-color 1s ;
+
+}
+
 .theatre .moviedate {
   background-color: #fff;
   border: 0px;
@@ -125,4 +146,9 @@ p.text {
 
 p.text span {
   color: #6feaf6;
+}
+.seat a{
+  display:none;
+  text-decoration: none;
+  border: none;
 }
