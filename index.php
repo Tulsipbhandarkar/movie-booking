@@ -95,7 +95,7 @@ if($result = mysqli_query($link, $sql)){
 
             echo "<div class='card' >";
             if (isset($_SESSION['username'])){ echo "<a href='movie-page.php?mid=".$row['mid'] ."'>";}
-            else {echo "<a href='#'></a>"; }
+            else {echo '<a href="signin.php">'; }
         echo "<img src='".$row['mimg'] ."'>
         <div class='card-title'>"
            .$row['mname'] ."
