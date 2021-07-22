@@ -1,12 +1,14 @@
 <?php
 include 'connection.php';
-echo "seat-bookings";
-$thet = $_GET['theat'];
-$mdate = $_GET['mdate'];
-$mtime = $_GET['mtime'];
-$movieid = $_GET['mid'];
+include 'user_info_params.php';
 
-$mtime .= ":00";
+echo "seat-bookings";
+// $thet = $_GET['theat'];
+// $mdate = $_GET['mdate'];
+// $mtime = $_GET['mtime'];
+// $movieid = $_GET['mid'];
+
+// $mtime .= ":00";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -56,6 +58,7 @@ while($row = mysqli_fetch_array($result))
   {
       array_push($occ_seats, $row['sno']);
     $cnt+=1;
+    $sid = $row['sid'];
   }
 }
 }
@@ -79,7 +82,8 @@ while($row = mysqli_fetch_array($result))
   }
 //    echo "</table>";
 
-?></table>
+?>
+</table>
 </div>
     <p class="text">
       You have selected <span id="count">0</span> seats for a price of $<span
@@ -88,6 +92,32 @@ while($row = mysqli_fetch_array($result))
     </p>
     <input type="button" id='submit-book' value='Pay now' disabled> 
 
-    <script type="text/javascript" src= movie-page.js></script>
+
+
+    <script>
+       total_seats = document.getElementById("count").innerHTML;
+       
+        mid = <?= $movieid ?> ;
+        thet= <?= $thet ?> ;
+        mtime=  <?= json_encode($mtime) ?> ;
+        mdate= <?= json_encode($mdate) ?> ;
+        console.log(mid+" ");
+        console.log(thet+" ");
+        console.log(mdate+" ");
+        console.log(mtime+" ");
+
+        $(document).ready(function(){
+          $('#submit-book').click(function(){
+            alert("Booking confirmed");
+            <?php
+             
+        // $sql = "INSERT INTO bookings (mail, sid, noseats) VALUES ('".$_SESSION['username']."',".$sid ." , ?)";
+
+            ?>
+            window.location.assign('dashboard.php');
+          });
+        });
+      </script>
+    <script type="text/javascript" src= seats_page.js></script>
 </body>
 </html>

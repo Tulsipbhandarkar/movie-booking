@@ -22,6 +22,7 @@ while($row = mysqli_fetch_array($result))
   {
       array_push($occ_seats, $row['sno']);
     $cnt+=1;
+    // echo $row['sid'];
   }
 }
 }

@@ -193,6 +193,20 @@ $(document).ready(function(){
     $('#submit-button').click(function(){
       loc ='seats_page.php?mid='+movieidEn+'&theat='+theat+"&mdate="+mdate+"&mtime="+mtime
       window.location.assign(loc);
+
+      $.ajax({
+  type: "POST",
+  url: 'user_info_params.php',
+  data: {"thet":theat,
+          "mdate":mdate,
+          "mtime":mtime,
+          "movieid":movieidEn},
+  success: function(data){
+    console.log("User data sucessfully sent ");
+    
+  }
+});
+
     })
 //  console.log("Seats ");
 // $.ajax({
