@@ -191,6 +191,7 @@ $(document).ready(function(){
 
    $('#submit-button').prop('disabled',false);
     $('#submit-button').click(function(){
+
       loc ='seats_page.php?mid='+movieidEn+'&theat='+theat+"&mdate="+mdate+"&mtime="+mtime
       window.location.assign(loc);
 

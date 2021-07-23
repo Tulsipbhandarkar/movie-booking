@@ -44,21 +44,24 @@ echo "seat-bookings";
       <div class="screen" style="width: 100%; height: 60px;"></div>
       <table id="s_table">
 <?php
+
 $sql= "SELECT * FROM shows NATURAL JOIN seats WHERE shows.mid=$movieid AND shows.cid=$thet AND shows.sdate='$mdate' AND shows.stimings='$mtime';";
 
+echo  $thet;
 $cnt=0;
 $occ_seats= array();
 $seat_name="";
-if($result = mysqli_query($link,$sql));
+if($result = mysqli_query($link,$sql))
     {
 
      if(mysqli_num_rows($result) > 0){
-        
+
 while($row = mysqli_fetch_array($result))
   {
       array_push($occ_seats, $row['sno']);
     $cnt+=1;
     $sid = $row['sid'];
+    echo $sid;
   }
 }
 }
@@ -95,29 +98,43 @@ while($row = mysqli_fetch_array($result))
 
 
     <script>
-       total_seats = document.getElementById("count").innerHTML;
        
         mid = <?= $movieid ?> ;
         thet= <?= $thet ?> ;
         mtime=  <?= json_encode($mtime) ?> ;
         mdate= <?= json_encode($mdate) ?> ;
+        sid= <?= $sid ?>;
         console.log(mid+" ");
         console.log(thet+" ");
         console.log(mdate+" ");
         console.log(mtime+" ");
+        console.log(sid+" ");
 
         $(document).ready(function(){
           $('#submit-book').click(function(){
-            alert("Booking confirmed");
-            <?php
-             
-        // $sql = "INSERT INTO bookings (mail, sid, noseats) VALUES ('".$_SESSION['username']."',".$sid ." , ?)";
+            // alert("Booking confirmed");
+ 
+      var arrSeat =JSON.stringify(selected_seats);
+      console.log(arrSeat);
+      // $('#myLink').attr({ href: '/myLink?array=' + arrStr });
 
-            ?>
-            window.location.assign('dashboard.php');
+            $.ajax({
+                  type: "POST",
+                  url: 'confirm_seats.php',
+                  data: {
+                          "sid":sid,
+                        "selected_seats":arrSeat},
+                  success: function(data){
+                    console.log("Seats confirmed");
+                  $('.text').append(data);
+                  }
+                });
+
+             window.location.assign('dashboard.php');
           });
         });
       </script>
-    <script type="text/javascript" src= seats_page.js></script>
+          <script type="text/javascript" src= seats_page.js></script>
+
 </body>
 </html>

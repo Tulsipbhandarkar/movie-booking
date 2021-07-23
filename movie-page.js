@@ -10,6 +10,7 @@ console.log($seat);
 const movieSelect =0;
 var ticketPrice = 0;
 
+
  
 // $(document).ready(function(){
   // $('.seat').click(function() {
