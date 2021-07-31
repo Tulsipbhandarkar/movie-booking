@@ -2,7 +2,7 @@
 include 'connection.php';
 include 'user_info_params.php';
 
-echo "seat-bookings";
+
 // $thet = $_GET['theat'];
 // $mdate = $_GET['mdate'];
 // $mtime = $_GET['mtime'];
@@ -24,7 +24,41 @@ echo "seat-bookings";
 </head>
 <body>
 
+<?php
 
+$sql= "SELECT * FROM shows NATURAL JOIN seats WHERE shows.mid=$movieid AND shows.cid=$thet AND shows.sdate='$mdate' AND shows.stimings='$mtime';";
+$sql2= "SELECT sid FROM shows WHERE shows.mid=$movieid AND shows.cid=$thet AND shows.sdate='$mdate' AND shows.stimings='$mtime';";
+
+
+$cnt=0;
+$occ_seats= array();
+$seat_name="";
+if($result = mysqli_query($link,$sql))
+    {
+
+     if(mysqli_num_rows($result) > 0){
+
+while($row = mysqli_fetch_array($result))
+  {
+      array_push($occ_seats, $row['sno']);
+    $cnt+=1;
+  }
+}
+    }
+
+    if($result = mysqli_query($link,$sql2))
+    {
+
+     if(mysqli_num_rows($result) > 0){
+
+while($row = mysqli_fetch_array($result))
+  {
+     $sid=$row['sid'];
+  }
+}
+    }
+
+?>
 
 <ul class="showcase">
       <li>
@@ -43,28 +77,8 @@ echo "seat-bookings";
     <div class="movie-container" id="showing-seats">
       <div class="screen" style="width: 100%; height: 60px;"></div>
       <table id="s_table">
+
 <?php
-
-$sql= "SELECT * FROM shows NATURAL JOIN seats WHERE shows.mid=$movieid AND shows.cid=$thet AND shows.sdate='$mdate' AND shows.stimings='$mtime';";
-
-echo  $thet;
-$cnt=0;
-$occ_seats= array();
-$seat_name="";
-if($result = mysqli_query($link,$sql))
-    {
-
-     if(mysqli_num_rows($result) > 0){
-
-while($row = mysqli_fetch_array($result))
-  {
-      array_push($occ_seats, $row['sno']);
-    $cnt+=1;
-    $sid = $row['sid'];
-    echo $sid;
-  }
-}
-}
 //    echo "<table id='s_table'>";
   for($i=1;$i<=3;$i++)
   {  
@@ -123,7 +137,7 @@ while($row = mysqli_fetch_array($result))
                   url: 'confirm_seats.php',
                   data: {
                           "sid":sid,
-                        "selected_seats":arrSeat},
+                        "sel_seats":arrSeat},
                   success: function(data){
                     console.log("Seats confirmed");
                   $('.text').append(data);

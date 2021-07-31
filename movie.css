@@ -152,3 +152,10 @@ p.text span {
   text-decoration: none;
   border: none;
 }
+.booking_item{
+  padding: 6px;
+}
+.delete_booking{
+  position: absolute;
+  right:30%;
+}

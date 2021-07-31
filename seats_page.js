@@ -36,7 +36,8 @@ var ticketPrice = 0;
       $(this).removeClass('seat selected');
       $(this).addClass('seat');
       ss=$(this).text();
-      selected_seats.splice(ss,1);
+      var temp_i =selected_seats.indexOf(ss);
+      selected_seats.splice(temp_i,1);
       seat_price=$(this).parent().attr("class");
 
       s_counter-=1;

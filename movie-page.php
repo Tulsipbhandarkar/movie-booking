@@ -39,8 +39,7 @@ JOIN with cities to theatre name
 
 <div class="movie-container">
 <form class="bookform">
-<select name="theatre" class="theatre" onchange="showtheatre(this.value)">
-<option value ="">Select Theatre:</option>
+
 <?php
 $movieid = $_GET['mid'];
 $movieidEn= json_encode($movieid);
@@ -51,7 +50,8 @@ $movieidEn= json_encode($movieid);
 
 if($result = mysqli_query($link, $theat)){
     if(mysqli_num_rows($result) > 0){
-
+      echo "<select name='theatre' class='theatre' onchange='showtheatre(this.value)'>
+      <option value =''>Select Theatre:</option>";
         while($row = mysqli_fetch_array($result)){
             echo "<option value='" .$row['cid'] ."'>" .$row['cname'] ."</option>";
           
@@ -67,6 +67,10 @@ if($result = mysqli_query($link, $theat)){
 
 
         }
+    }
+    else{
+      echo "No ongoing shows!";
+      exit();
     }
 }
 
